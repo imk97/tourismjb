@@ -1,4 +1,6 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 void main() {
   runApp(const MyApp());
@@ -23,8 +25,16 @@ class MyApp extends StatelessWidget {
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
         primarySwatch: Colors.blue,
+        appBarTheme: const AppBarTheme(
+          color: Colors.white,
+          foregroundColor: Colors.black,
+          systemOverlayStyle: SystemUiOverlayStyle(
+              statusBarColor: Colors.white,
+              statusBarIconBrightness: Brightness.dark,
+              statusBarBrightness: Brightness.light),
+        ),
       ),
-      home: const MyHomePage(title: 'Tourism Johor Bahru'),
+      home: const MyHomePage(title: 'Tourism'),
     );
   }
 }
@@ -48,16 +58,22 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  // int _counter = 0;
+  int _selectedIndex = 0;
 
-  void _incrementCounter() {
+  // void _incrementCounter() {
+  //   setState(() {
+  //     // This call to setState tells the Flutter framework that something has
+  //     // changed in this State, which causes it to rerun the build method below
+  //     // so that the display can reflect the updated values. If we changed
+  //     // _counter without calling setState(), then the build method would not be
+  //     // called again, and so nothing would appear to happen.
+  //     _counter++;
+  //   });
+  // }
+  void _onItemTapped(int index) {
     setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
+      _selectedIndex = index;
     });
   }
 
@@ -73,64 +89,155 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title, style: const TextStyle(color: Colors.black),),
+        // title: Text(
+        //   widget.title,
+        //   style: const TextStyle(color: Colors.black),
+        // ),
         backgroundColor: Colors.white,
-        leading: Builder(builder: (context) => IconButton(onPressed: () {Scaffold.of(context).openDrawer();}, icon: const Icon(Icons.menu), color: Colors.black,)) 
+        leading: Builder(
+          builder: (context) => IconButton(
+            onPressed: () {
+              Scaffold.of(context).openDrawer();
+            },
+            icon: const Icon(Icons.menu),
+            color: Colors.black,
+          ),
+        ),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.search),
+          ),
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.doorbell),
+          ),
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.person_2_outlined),
+          ),
+        ],
       ),
       drawer: Drawer(
+        backgroundColor: Colors.white,
         child: ListView(
           children: const <Widget>[
-            DrawerHeader(decoration: BoxDecoration(
-              color: Colors.white,
+            DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.white,
+              ),
+              child: Text(
+                'Drawer Header',
+                style: TextStyle(color: Colors.white, fontSize: 24),
+              ),
             ),
-            child: Text('Drawer Header', style: TextStyle(color: Colors.white, fontSize: 24),),
+            ListTile(
+              title: Text('Service'),
+              leading: Icon(Icons.headphones),
             ),
-            ListTile(title: Text('Service'), leading: Icon(Icons.headphones)),
-            ListTile(title: Text('Utilities'), leading: Icon(Icons.miscellaneous_services),),
-            ListTile(title: Text('Market Place'), leading: Icon(Icons.shopping_cart),),
-            ListTile(title: Text('Points'), leading: Icon(Icons.star),),
-            ListTile(title: Text('Current Converter'), leading: Icon(Icons.currency_exchange),),
-            ListTile(title: Text('Muslim Prayer Time'), leading: Icon(Icons.mosque),),
-            ListTile(title: Text('Change Language'), leading: Icon(Icons.language),),
-            ListTile(title: Text('Virtual Assistance'), leading: Icon(Icons.assistant),),
-            ListTile(title: Text('Logout'), leading: Icon(Icons.logout),),
+            ListTile(
+              title: Text('Utilities'),
+              leading: Icon(Icons.miscellaneous_services),
+            ),
+            ListTile(
+              title: Text('Market Place'),
+              leading: Icon(Icons.shopping_cart),
+            ),
+            ListTile(
+              title: Text('Points'),
+              leading: Icon(Icons.star),
+            ),
+            ListTile(
+              title: Text('Current Converter'),
+              leading: Icon(Icons.currency_exchange),
+            ),
+            ListTile(
+              title: Text('Muslim Prayer Time'),
+              leading: Icon(Icons.mosque),
+            ),
+            ListTile(
+              title: Text('Change Language'),
+              leading: Icon(Icons.language),
+            ),
+            ListTile(
+              title: Text('Virtual Assistance'),
+              leading: Icon(Icons.assistant),
+            ),
+            ListTile(
+              title: Text('Logout'),
+              leading: Icon(Icons.logout),
+            ),
           ],
         ),
       ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+      // body: Center(
+      //   // Center is a layout widget. It takes a single child and positions it
+      //   // in the middle of the parent.
+      //   child: Column(
+      //     // Column is also a layout widget. It takes a list of children and
+      //     // arranges them vertically. By default, it sizes itself to fit its
+      //     // children horizontally, and tries to be as tall as its parent.
+      //     //
+      //     // Invoke "debug painting" (press "p" in the console, choose the
+      //     // "Toggle Debug Paint" action from the Flutter Inspector in Android
+      //     // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
+      //     // to see the wireframe for each widget.
+      //     //
+      //     // Column has various properties to control how it sizes itself and
+      //     // how it positions its children. Here we use mainAxisAlignment to
+      //     // center the children vertically; the main axis here is the vertical
+      //     // axis because Columns are vertical (the cross axis would be
+      //     // horizontal).
+      //     mainAxisAlignment: MainAxisAlignment.center,
+      //     children: <Widget>[
+      //       const Text(
+      //         'You have pushed the button this many times:',
+      //       ),
+      //       Text(
+      //         // '$_counter',
+      //         style: Theme.of(context).textTheme.headlineMedium,
+      //       ),
+      //     ],
+      //   ),
+      // ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: _incrementCounter,
+      //   tooltip: 'Increment',
+      //   child: const Icon(Icons.add),
+      // ),
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.white,
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.home,
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.feed_sharp,
             ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
+            label: 'Feed',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.location_on,
+            ),
+            label: 'Nearby',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.more,
+            ),
+            label: 'More',
+          )
+        ],
+        type: BottomNavigationBarType.shifting,
+        currentIndex: _selectedIndex,
+        selectedItemColor: Colors.black,
+        unselectedItemColor: Colors.grey,
+        onTap: _onItemTapped,
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
