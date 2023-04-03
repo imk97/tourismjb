@@ -173,40 +173,55 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Column(
         children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.all(50.0),
+          Center(
             child: Row(
+              // mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Expanded(
-                  child: IconButton(
-                    onPressed: () {},
-                    icon: const Image(
-                      image: AssetImage('assets/mosque.png'),
-                    ),
-                    iconSize: 70.0,
-                  ),
+                Column(
+                  children: [
+                    Expanded(child: IconButton(onPressed: () {}, icon: Image.asset('assets/mosque.png'), iconSize: 50.0)),
+                    const Text('Prayer Time'),
+                  ],
                 ),
-                Expanded(
-                    child: IconButton(
-                  onPressed: () {},
-                  icon: const Icon(Icons.food_bank),
-                )),
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(70, 8, 0, 0),
-            child: Row(
-              children: const [
-                Expanded(
-                  child: Text('Prayer time'),
+                Column(
+                  children: [
+                    Expanded(child: IconButton(onPressed: () {}, icon: Image.network('https://t3.ftcdn.net/jpg/03/50/46/00/360_F_350460096_X3sNrpG9THM3XM7UPBocxBcRL15fHc9f.jpg'), iconSize: 50.0)),
+                    const Text('Qiblat Direction'),
+                  ],
                 ),
-                Expanded(
-                  child: Text('Row 2(column 2)'),
+                Column(
+                  children: [
+                    Expanded(child: IconButton(onPressed: (){}, icon: Image.network('https://cdn-icons-png.flaticon.com/512/7321/7321065.png'), iconSize: 50.0,)),
+                    const Text('Dua'),
+                  ],
                 )
               ],
             ),
           ),
+          Center(
+            child: Row(
+              children: [
+                Column(
+                  children: [
+                    Expanded(child: IconButton(onPressed: (){}, icon: Image.asset(''), iconSize: 50.0,)),
+                    const Text('data'),
+                  ],
+                ),
+                Column(
+                  children: [
+                    Expanded(child: IconButton(onPressed: () {}, icon: Image.asset(''), iconSize: 50.0,)),
+                    const Text('data'),
+                  ],
+                ),
+                Column(
+                  children: [
+                    Expanded(child: IconButton(onPressed: () {}, icon: Image.asset(''), iconSize: 50.0,)),
+                    const Text('data'),
+                  ],
+                )
+              ],
+            ),
+          )
         ],
       ),
       // floatingActionButton: FloatingActionButton(
