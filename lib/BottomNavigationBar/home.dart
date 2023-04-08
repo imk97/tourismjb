@@ -20,8 +20,7 @@ class HomeScreen extends StatelessWidget {
                   Container(
                     padding: const EdgeInsets.all(0),
                     child: const Image(
-                      image: NetworkImage(
-                          'https://img.freepik.com/premium-vector/johor-bahru-malaysia-skyline-with-color-buildings-vector-illustration-business-travel-tourism-illustration-with-modern-architecture-image-presentation-banner-placard-web-site_119523-2810.jpg?w=2000'),
+                      image: AssetImage('assets/header_tourismjb.png'),
                     ),
                   ),
                   Positioned(
@@ -57,8 +56,7 @@ class HomeScreen extends StatelessWidget {
                       children: [
                         IconButton(
                           onPressed: () {},
-                          icon: Image.network(
-                              'https://cdn-icons-png.flaticon.com/512/6978/6978161.png'),
+                          icon: Image.asset('assets/halal.png'),
                           iconSize: 50.0,
                         ),
                         const Text('Halal Food'),
@@ -71,8 +69,7 @@ class HomeScreen extends StatelessWidget {
                       children: [
                         IconButton(
                           onPressed: () {},
-                          icon: Image.network(
-                              'https://cdn-icons-png.flaticon.com/512/6554/6554183.png'),
+                          icon: Image.asset('assets/tourism.png'),
                           iconSize: 50.0,
                         ),
                         const Text('Tourism'),
@@ -85,8 +82,7 @@ class HomeScreen extends StatelessWidget {
                       children: [
                         IconButton(
                           onPressed: () {},
-                          icon: Image.network(
-                              'https://cdn-icons-png.flaticon.com/512/235/235889.png'),
+                          icon: Image.asset('assets/hotel.png'),
                           iconSize: 50.0,
                         ),
                         const Text('Hotel')
