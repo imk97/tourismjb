@@ -1,6 +1,10 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:tourismjb_app/BottomNavigationBar/home.dart';
+import 'package:tourismjb_app/BottomNavigationBar/more.dart';
+import 'package:tourismjb_app/BottomNavigationBar/nearby.dart';
+
+import 'BottomNavigationBar/feed.dart';
 
 void main() {
   runApp(const MyApp());
@@ -58,25 +62,32 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  // int _counter = 0;
   int _selectedIndex = 0;
 
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
+  List screens = [
+    const HomeScreen(),
+    const FeedScreen(),
+    const NearbyScreen(),
+    const MoreScreen()
+  ];
 
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
+  // void _incrementCounter() {
+  //   setState(() {
+  //     // This call to setState tells the Flutter framework that something has
+  //     // changed in this State, which causes it to rerun the build method below
+  //     // so that the display can reflect the updated values. If we changed
+  //     // _counter without calling setState(), then the build method would not be
+  //     // called again, and so nothing would appear to happen.
+  //     _counter++;
+  //   });
+  // }
+
+  // void _onItemTapped(int index) {
+  //   setState(() {
+  //     _selectedIndex = index;
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -86,6 +97,7 @@ class _MyHomePageState extends State<MyHomePage> {
     // The Flutter framework has been optimized to make rerunning build methods
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
+    // Size screenSize = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         // Here we take the value from the MyHomePage object that was created by
@@ -171,59 +183,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-      body: Column(
-        children: <Widget>[
-          Center(
-            child: Row(
-              // mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Column(
-                  children: [
-                    Expanded(child: IconButton(onPressed: () {}, icon: Image.asset('assets/mosque.png'), iconSize: 50.0)),
-                    const Text('Prayer Time'),
-                  ],
-                ),
-                Column(
-                  children: [
-                    Expanded(child: IconButton(onPressed: () {}, icon: Image.network('https://t3.ftcdn.net/jpg/03/50/46/00/360_F_350460096_X3sNrpG9THM3XM7UPBocxBcRL15fHc9f.jpg'), iconSize: 50.0)),
-                    const Text('Qiblat Direction'),
-                  ],
-                ),
-                Column(
-                  children: [
-                    Expanded(child: IconButton(onPressed: (){}, icon: Image.network('https://cdn-icons-png.flaticon.com/512/7321/7321065.png'), iconSize: 50.0,)),
-                    const Text('Dua'),
-                  ],
-                )
-              ],
-            ),
-          ),
-          Center(
-            child: Row(
-              children: [
-                Column(
-                  children: [
-                    Expanded(child: IconButton(onPressed: (){}, icon: Image.asset(''), iconSize: 50.0,)),
-                    const Text('data'),
-                  ],
-                ),
-                Column(
-                  children: [
-                    Expanded(child: IconButton(onPressed: () {}, icon: Image.asset(''), iconSize: 50.0,)),
-                    const Text('data'),
-                  ],
-                ),
-                Column(
-                  children: [
-                    Expanded(child: IconButton(onPressed: () {}, icon: Image.asset(''), iconSize: 50.0,)),
-                    const Text('data'),
-                  ],
-                )
-              ],
-            ),
-          )
-        ],
-      ),
+      body: screens[_selectedIndex],
       // floatingActionButton: FloatingActionButton(
       //   onPressed: _incrementCounter,
       //   tooltip: 'Increment',
@@ -252,16 +212,16 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.more,
+              Icons.add_box,
             ),
             label: 'More',
           )
         ],
-        type: BottomNavigationBarType.shifting,
+        type: BottomNavigationBarType.fixed,
         currentIndex: _selectedIndex,
         selectedItemColor: Colors.black,
         unselectedItemColor: Colors.grey,
-        onTap: _onItemTapped,
+        onTap: (index) => setState(() => _selectedIndex = index),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
