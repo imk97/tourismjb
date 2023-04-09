@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:tourismjb_app/BottomNavigationBar/home.dart';
 import 'package:tourismjb_app/BottomNavigationBar/more.dart';
 import 'package:tourismjb_app/BottomNavigationBar/nearby.dart';
+import 'package:tourismjb_app/login.dart';
 
 import 'BottomNavigationBar/feed.dart';
 
@@ -126,7 +127,10 @@ class _MyHomePageState extends State<MyHomePage> {
             icon: const Icon(Icons.doorbell),
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => const LoginScreen()));
+            },
             icon: const Icon(Icons.person_2_outlined),
           ),
         ],
